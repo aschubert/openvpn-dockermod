@@ -4,7 +4,7 @@ on: [push, pull_request, workflow_dispatch]
 
 env:
   ENDPOINT: "aschubert/openvpn-dockermod"
-  BRANCH: "master"
+  BRANCH: "refs/heads/master"
 
 jobs:
   build:
@@ -17,16 +17,12 @@ jobs:
           docker build --no-cache -t ${{ github.sha }} .
 
       - name: Tag image
+        if: ${{ github.ref == env.BRANCH }}
         run: |
-          echo "Hello World!"
-          echo "${{ github.ref }}"
-          echo "${{ env.BRANCH }}"
-        #if: ${{ github.ref == env.BRANCH }}
-        #run: |
-        #  docker tag ${{ github.sha }} ${ENDPOINT}:
-        #  docker tag ${{ github.sha }} ${ENDPOINT}:${{ github.sha }}
-        #  docker tag ${{ github.sha }} ghcr.io/${ENDPOINT}:
-        #  docker tag ${{ github.sha }} ghcr.io/${ENDPOINT}:${{ github.sha }}
+          docker tag ${{ github.sha }} ${ENDPOINT}:
+          docker tag ${{ github.sha }} ${ENDPOINT}:${{ github.sha }}
+          docker tag ${{ github.sha }} ghcr.io/${ENDPOINT}:
+          docker tag ${{ github.sha }} ghcr.io/${ENDPOINT}:${{ github.sha }}
 
       - name: Credential check
         if: ${{ github.ref == env.BRANCH }}
