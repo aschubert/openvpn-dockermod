@@ -3,7 +3,7 @@ name: Build Image
 on: [push, pull_request, workflow_dispatch]
 
 env:
-  ENDPOINT: "aschubert/openvpn-dockermod"
+  ENDPOINT: "aschubert/sabnzdbmod"
   BRANCH: "refs/heads/master"
 
 jobs:
