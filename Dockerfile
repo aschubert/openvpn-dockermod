@@ -1,6 +1,6 @@
 
 ## Buildstage ##
-FROM ghcr.io/linuxserver/baseimage-ubuntu:bionic
+FROM ghcr.io/linuxserver/baseimage-ubuntu:bionic as buildstage
 
 RUN \
  echo "**** install openvpn ****" && \
