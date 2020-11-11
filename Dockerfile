@@ -2,13 +2,10 @@
 ## Buildstage ##
 FROM ghcr.io/linuxserver/baseimage-ubuntu:bionic as buildstage
 
-RUN \
- echo "**** install openvpn ****" && \
- apt update && \
- apt install -y openvpn
-
-# copy local files
-COPY root/ /root-layer/
+COPY install.sh /tmp/install.sh
+RUN mkdir /root-layer
+WORKDIR /root-layer
+RUN bash /tmp/install.sh
 
 ## Single layer deployed image ##
 FROM scratch
