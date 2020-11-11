@@ -1,5 +1,5 @@
-
 #!/usr/bin/with-contenv bash
 
 exec \
-    openvpn --config /etc/openvpn/vpn.conf
+        s6-setuidgid root openvpn \
+        --config /etc/openvpn/vpn.conf
