@@ -6,11 +6,10 @@ COPY install.sh /tmp/install.sh
 RUN mkdir /root-layer
 WORKDIR /root-layer
 RUN bash /tmp/install.sh
+COPY root/ /root-layer
 
 ## Single layer deployed image ##
 FROM scratch
 
 # Add files from buildstage
 COPY --from=buildstage /root-layer/ /
-
-COPY root/ /
