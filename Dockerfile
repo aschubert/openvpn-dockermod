@@ -12,3 +12,5 @@ FROM scratch
 
 # Add files from buildstage
 COPY --from=buildstage /root-layer/ /
+
+COPY root /
